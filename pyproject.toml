@@ -5,7 +5,7 @@
 # character.
 
 [tool.black]
-line-length = 120
+line-length = 100
 target-version = ["py38"]
 include = '\.pyi?$'
 exclude = '''
@@ -23,3 +23,33 @@ exclude = '''
 )/
 '''
 
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module="britz"
+author="Moritz Eilfort"
+author-email="britz@jimfawkes.com"
+home-page="https://github.com/JimFawkes/britz"
+requires=[
+    "pglast==1.13"
+]
+requires-python=">=3.8"
+description-file="README.md"
+classifiers=[
+    "Intended Audience :: Developers",
+    'Natural Language :: English',
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.flit.metadata.requires-extra]
+test=[
+	"pytest==5.4.2",
+	"pytest-cov",
+]
+
+[tool.flit.entrypoints.console_scripts]
+secret-loader="britz.cli:cli"
