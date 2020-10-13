@@ -4,7 +4,7 @@
 help_text = """
 britz
 
-Easily review the dependencies between your SQL Transformations.
+Easily review dependencies between SQL Transformations
 """
 
 import argparse

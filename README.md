@@ -1,4 +1,5 @@
 # britz
+Easily review dependencies between SQL Transformations
 
 
 [![test-action](https://github.com/JimFawkes/britz/workflows/run_tests/badge.svg)](https://github.com/JimFawkes/britz/actions)
