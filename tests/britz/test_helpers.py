@@ -14,6 +14,6 @@ from britz.cli import parser
 
 def test_mock_args_is_in_sync_with_argparse():
     mock_args = helpers.MockArgs()
-    cli_args = parser.parse_args()
+    cli_args = parser.parse_args(args=[])
 
     assert vars(mock_args) == vars(cli_args)
