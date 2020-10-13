@@ -47,7 +47,7 @@ classifiers=[
 
 [tool.flit.metadata.requires-extra]
 test=[
-	"pytest==5.4.2",
+	"pytest==6.1.1",
 	"pytest-cov",
 ]
 
