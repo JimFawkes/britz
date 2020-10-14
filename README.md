@@ -8,4 +8,6 @@ Easily review dependencies between SQL Transformations
 [![black](https://github.com/JimFawkes/britz/workflows/Lint/badge.svg)](https://github.com/JimFawkes/britz/actions)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](COPYING)
 [![Latest Tag](https://img.shields.io/github/v/tag/jimfawkes/britz)](https://github.com/JimFawkes/britz/releases)
+[![CodeFactor](https://www.codefactor.io/repository/github/jimfawkes/britz/badge)](https://www.codefactor.io/repository/github/jimfawkes/britz)
+[![CodeQL](https://github.com/JimFawkes/britz/workflows/CodeQL/badge.svg)](https://github.com/JimFawkes/britz/actions)
 
