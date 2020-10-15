@@ -1,3 +1,5 @@
+***Attention, this project is not in any state to be used.***
+
 # britz
 Easily review dependencies between SQL Transformations
 
