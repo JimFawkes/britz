@@ -118,3 +118,4 @@ logs/
 *.bak
 poc/
 tmp/
+ops/
