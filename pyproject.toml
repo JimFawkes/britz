@@ -52,4 +52,4 @@ test=[
 ]
 
 [tool.flit.entrypoints.console_scripts]
-secret-loader="britz.cli:cli"
+britz="britz.cli:cli"
