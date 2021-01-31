@@ -1,5 +1,5 @@
 """
-Copyright: (c) 2020, Moritz Eilfort
+Copyright: (c) 2021, Moritz Eilfort
 GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 """
 
@@ -34,16 +34,6 @@ def test_print_version(capsys):
     cleaned_output = captured.out.replace("\n", "")
 
     assert __version__ in cleaned_output
-
-
-def test_britz_cli_with_only_filename():
-
-    args = helpers.MockArgs(filename="some/filename.sql")
-
-    with pytest.raises(SystemExit) as e:
-        cli.britz_cli(args)
-
-    assert e.value.code == 0
 
 
 @patch("britz.cli.britz_cli")

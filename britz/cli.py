@@ -1,4 +1,4 @@
-# Copyright: (c) 2020, Moritz Eilfort
+# Copyright: (c) 2021, Moritz Eilfort
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 help_text = """
@@ -30,8 +30,14 @@ parser = argparse.ArgumentParser(
 
 
 parser.add_argument("--version", "-v", help="Show current version", action="store_true")
-parser.add_argument("--debug", "-d", help="Print Debug Messages", action="store_true")
-parser.add_argument("--filename", "-f", help="SQL file to parse", type=str)
+parser.add_argument("--debug", help="Print Debug Messages", action="store_true")
+parser.add_argument(
+    "--dirname", "-d", help="Directory with SQL files to parse", action="append", type=str
+)
+parser.add_argument("--prettify", "-p", help="Pretty-Print SQL Statements", action="store_true")
+parser.add_argument("--parse", help="Parse SQL Statements", action="store_true")
+parser.add_argument("--output", "-o", help="File to write the output to", type=str)
+parser.add_argument("--graph", "-g", help="Create Graph from output", action="store_true")
 
 
 def print_version():
@@ -58,20 +64,15 @@ def parse_args(args):
     if args.debug:
         setup_logging()
 
-    if not args.filename:
-        parser.error("Missing required argument: '--filename'")
+    if not args.dirname:
+        parser.error("Missing required argument: '--dirname'")
 
     return args
 
 
 def britz_cli(args):
-    print()
-    print("----------------------")
-    print("- Nothing to do yet! -")
-    print("----------------------")
-    print()
 
-    sys.exit(0)
+    parser.print_help()
 
 
 def cli(parser=parser.parse_args):
