@@ -15,7 +15,7 @@ def read_file(filename):
     with open(filename) as fd:
         content = fd.read()
 
-    return content
+    return content, filename
 
 
 def get_file_list(path, suffix=".sql"):
@@ -25,7 +25,7 @@ def get_file_list(path, suffix=".sql"):
     return sorted([str(filepath) for filepath in sql_dir.rglob(f"*{suffix}")])
 
 
-def get_content(path, suffix=".sql"):
+def get_content(paths, suffix=".sql"):
     """
     Get a generator iterating over the list of files constructed from the given
     path and suffix.
@@ -33,15 +33,16 @@ def get_content(path, suffix=".sql"):
 
     TODO
     ----
-    - Allow list of paths
     - Allow partial filenames e.g., `some/dir/some_file` resolving [some/dir/some_file_1.sql, some/dir/some_file_2.sql]
 
     """
-    if Path(path).is_dir():
-        files = get_file_list(path, suffix=suffix)
-    elif Path(path).is_file():
-        files = [path]
-    else:
-        raise InputFileError(f"Encountered UNKNOWN Object Type for path='{path}'")
+    files = []
+    for path in paths:
+        if Path(path).is_dir():
+            files += get_file_list(path, suffix=suffix)
+        elif Path(path).is_file():
+            files.append(path)
+        else:
+            raise InputFileError(f"Encountered UNKNOWN Object Type for path='{path}'")
 
     return (read_file(file) for file in files)

@@ -12,6 +12,7 @@ import logging
 import sys
 
 from britz import __version__, __author__, __url__, __license__, __copyright__
+from .parser import parse_sql_files
 
 epilog = f"""
 Version {__version__} - October 2020 - {__author__} - src: {__url__}
@@ -44,6 +45,16 @@ def print_version():
     print(f"britz {__version__}")
 
 
+def print_parsed_files(files):
+    line_length = 20
+    sep = "-" * line_length
+    print("\n" + sep)
+    print("Parsed Files:")
+    print(sep + "\n")
+    for idx, file in enumerate(files):
+        print(f"{idx}) File='{file}'")
+
+
 def setup_logging():
     # Default Logger
     logger = logging.getLogger()
@@ -71,6 +82,11 @@ def parse_args(args):
 
 
 def britz_cli(args):
+
+    if args.parse:
+        files = parse_sql_files(args.dirname)
+        print_parsed_files(files)
+        sys.exit(0)
 
     parser.print_help()
 
