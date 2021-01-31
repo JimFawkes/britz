@@ -33,7 +33,9 @@ author="Moritz Eilfort"
 author-email="britz@jimfawkes.com"
 home-page="https://github.com/JimFawkes/britz"
 requires=[
-    "pglast==1.13"
+    "pglast==1.13",
+    "loguru==0.5.3",
+    "rich==9.10.0"
 ]
 requires-python=">=3.8"
 description-file="README.md"
