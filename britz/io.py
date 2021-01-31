@@ -3,10 +3,24 @@
 """
 Module bundling all file read and write helper methods.
 """
-
+import json
 from pathlib import Path
 
+from loguru import logger
+
 from .exceptions import InputFileError
+
+
+def write_json(filename, data):
+    with open(filename, "w") as fp:
+        json.dump(data, fp, indent=2)
+
+
+def write_object_to_file(filename, data, type_):
+    types = {"json": write_json}
+    types[type_](filename, data)
+
+    return True
 
 
 def read_file(filename):

@@ -8,19 +8,20 @@ Easily review dependencies between SQL Transformations
 """
 
 import argparse
-import logging
 import sys
+
+from loguru import logger
 
 from britz import __version__, __author__, __url__, __license__, __copyright__
 from .parser import parse_sql_files
+
+logger.add(sys.stdout, level="ERROR")
 
 epilog = f"""
 Version {__version__} - October 2020 - {__author__} - src: {__url__}
 License {__license__} - {__copyright__}
 """
 
-
-logger = logging.getLogger("britz.cli")
 
 parser = argparse.ArgumentParser(
     prog="britz",
@@ -45,7 +46,7 @@ def print_version():
     print(f"britz {__version__}")
 
 
-def print_parsed_files(files):
+def print_parsed_files(files, output):
     line_length = 20
     sep = "-" * line_length
     print("\n" + sep)
@@ -53,16 +54,21 @@ def print_parsed_files(files):
     print(sep + "\n")
     for idx, file in enumerate(files):
         print(f"{idx}) File='{file}'")
+        if output:
+            file.write(dirname=output)
 
 
 def setup_logging():
     # Default Logger
-    logger = logging.getLogger()
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s %(name)s - %(levelname)s - %(message)s")
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-    logger.setLevel(logging.DEBUG)
+    # TOOD: not working as expected yet
+    logger.add(sys.stdout, level="DEBUG")
+    logger.add("logs/debug.log", retention="1 week", level="DEBUG")
+    # logger = logging.getLogger()
+    # handler = logging.StreamHandler()
+    # formatter = logging.Formatter("%(asctime)s %(name)s - %(levelname)s - %(message)s")
+    # handler.setFormatter(formatter)
+    # logger.addHandler(handler)
+    # logger.setLevel(logging.DEBUG)
 
     logger.debug("Set loglevel to DEBUG")
 
@@ -85,7 +91,7 @@ def britz_cli(args):
 
     if args.parse:
         files = parse_sql_files(args.dirname)
-        print_parsed_files(files)
+        print_parsed_files(files, output=args.output)
         sys.exit(0)
 
     parser.print_help()
