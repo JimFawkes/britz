@@ -11,6 +11,7 @@ import argparse
 import sys
 
 from loguru import logger
+from rich import print
 
 from britz import __version__, __author__, __url__, __license__, __copyright__
 from .parser import parse_sql_files
@@ -53,7 +54,7 @@ def print_parsed_files(files, output):
     print("Parsed Files:")
     print(sep + "\n")
     for idx, file in enumerate(files):
-        print(f"{idx}) File='{file}'")
+        print(f"{idx}) File={file}")
         if output:
             file.write(dirname=output)
 
