@@ -1,5 +1,5 @@
 # Requirements to run tests (Local or CI)
 -r base.txt	
 
-pytest==6.2.2
+pytest==7.3.0
 pytest-cov==2.10.1
